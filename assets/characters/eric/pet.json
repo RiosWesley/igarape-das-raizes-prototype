@@ -2,8 +2,8 @@
   "id": "eric-peresa",
   "displayName": "Eric Peresa",
   "description": "Jovem explorador amazônico em pixel art, pronto para seguir pistas na mata alagada.",
-  "spriteVersionNumber": 2,
-  "spritesheetPath": "spritesheet.webp",
+  "spriteVersionNumber": 3,
+  "spritesheetPath": "spritesheet_directional.png",
   "atlas": {
     "columns": 8,
     "rows": 11,

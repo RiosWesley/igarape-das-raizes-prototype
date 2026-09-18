@@ -55,7 +55,9 @@ func _add_generated_background() -> void:
 	add_child(background_sprite)
 
 func _add_animated_background() -> void:
-	var stream := load("res://assets/backgrounds/swamp_12fps_2560_q9.ogv")
+	var stream := load("res://assets/backgrounds/swamp_pixel_art_12fps.ogv")
+	if stream == null:
+		stream = load("res://assets/backgrounds/swamp_12fps_2560_q9.ogv")
 	if stream == null:
 		return
 	background_video = VideoStreamPlayer.new()

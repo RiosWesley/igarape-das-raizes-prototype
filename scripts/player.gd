@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name EricPlayer
 
-const ATLAS: Texture2D = preload("res://assets/characters/eric/spritesheet.webp")
+const ATLAS: Texture2D = preload("res://assets/characters/eric/spritesheet_directional.png")
 const SPEED := 230.0
 
 var dialogue_locked := false
@@ -86,10 +86,12 @@ func _update_animation(input_dir: Vector2) -> void:
 			fps = 10.0
 		elif input_dir.y < 0.0:
 			row = 9
-			frame_count = 1
+			frame_count = 8
+			fps = 10.0
 		else:
 			row = 10
-			frame_count = 1
+			frame_count = 8
+			fps = 10.0
 	var frame := int(animation_clock * fps) % frame_count
 	_set_frame(row, frame)
 	var moving_horizontally: bool = not dialogue_locked and input_dir.length_squared() > 0.01 and abs(input_dir.x) > 0.18

@@ -1,0 +1,274 @@
+{
+  "ok": true,
+  "frames_root": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows",
+  "states": [
+    "running-right",
+    "running-left"
+  ],
+  "errors": [],
+  "warnings": [],
+  "rows": [
+    {
+      "state": "running-right",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10829,
+          "bbox": [
+            55,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10783,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11039,
+          "bbox": [
+            57,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10770,
+          "bbox": [
+            57,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10763,
+          "bbox": [
+            56,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10888,
+          "bbox": [
+            57,
+            5,
+            134,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10819,
+          "bbox": [
+            55,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10910,
+          "bbox": [
+            55,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    },
+    {
+      "state": "running-left",
+      "expected_frames": 8,
+      "actual_frames": 8,
+      "extraction_method": "components",
+      "ok": true,
+      "errors": [],
+      "warnings": [],
+      "frames": [
+        {
+          "index": 0,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/00.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10994,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 1,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/01.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11098,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 2,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/02.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11096,
+          "bbox": [
+            55,
+            5,
+            137,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 3,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/03.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10861,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 4,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/04.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10970,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 5,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/05.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11095,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 6,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/06.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 11048,
+          "bbox": [
+            56,
+            5,
+            136,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        },
+        {
+          "index": 7,
+          "file": "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/07.png",
+          "width": 192,
+          "height": 208,
+          "nontransparent_pixels": 10996,
+          "bbox": [
+            56,
+            5,
+            135,
+            203
+          ],
+          "edge_pixels": 0,
+          "chroma_adjacent_pixels": 0
+        }
+      ]
+    }
+  ]
+}

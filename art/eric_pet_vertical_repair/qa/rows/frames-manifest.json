@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "chroma_key": {
+    "hex": "#00FFFF",
+    "rgb": [
+      0,
+      255,
+      255
+    ],
+    "threshold": 96.0
+  },
+  "rows": [
+    {
+      "state": "running-right",
+      "frames": [
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/00.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/01.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/02.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/03.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/04.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/05.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/06.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-right/07.png"
+      ],
+      "method": "components"
+    },
+    {
+      "state": "running-left",
+      "frames": [
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/00.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/01.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/02.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/03.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/04.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/05.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/06.png",
+        "/home/wesley/igarape-das-raizes-prototype/art/eric_pet_vertical_repair/qa/rows/running-left/07.png"
+      ],
+      "method": "components"
+    }
+  ]
+}
