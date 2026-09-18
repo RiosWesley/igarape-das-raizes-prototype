@@ -1,0 +1,6 @@
+.godot/
+
+# Local/editor artifacts
+*.tmp
+*.log
+

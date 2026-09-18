@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "spriteVersionNumber": 2,
+  "run_dir": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run",
+  "spritesheet": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\final\\spritesheet-extended.webp",
+  "validation": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\final\\validation-extended.json",
+  "chroma_despill": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\chroma-despill-extended.json",
+  "contact_sheet": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\contact-sheet-extended.png",
+  "direction_sheet": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\look-directions.png",
+  "direction_semantics": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\direction-semantics.json",
+  "blind_direction_validation": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\direction-blind-validation.json",
+  "continuity": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\look-continuity.json",
+  "review": "C:\\Users\\ragno\\OneDrive\\Documentos\\TDE-Jogos-Codex\\art\\eric_pet_run\\qa\\review.json",
+  "visual_qa": "pass",
+  "visual_qa_note": "Identidade, estilo pixel-art, transparência, 9 linhas padrão e 16 olhares confirmados; warnings intermediários não alteram quadrante ou cardeais."
+}
