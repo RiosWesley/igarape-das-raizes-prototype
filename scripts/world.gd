@@ -3,6 +3,8 @@ extends Node2D
 class_name RiverWorld
 
 const WORLD_SIZE := Vector2(2400.0, 1500.0)
+const BACKGROUND_FRAME_COUNT := 24
+const BACKGROUND_FRAME_RATE := 12.0
 const BACKGROUND: Texture2D = preload("res://assets/backgrounds/river_stage.webp")
 const WATER := Color("#0b3c59")
 const WATER_DEEP := Color("#082d47")
@@ -14,6 +16,7 @@ const WOOD_LIGHT := Color("#a56535")
 var elapsed := 0.0
 var font: Font
 var background_sprite: Sprite2D
+var background_flipbook: Sprite2D
 var background_video: VideoStreamPlayer
 var walkable_regions: Array[PackedVector2Array] = []
 
@@ -57,6 +60,25 @@ func _add_generated_background() -> void:
 	add_child(background_sprite)
 
 func _add_animated_background() -> void:
+	var sheet := load("res://art/swamp_pixel_frames_native_2s_atlas.webp") as Texture2D
+	if sheet != null:
+		background_flipbook = Sprite2D.new()
+		background_flipbook.name = "LosslessSwampFlipbook"
+		background_flipbook.texture = sheet
+		background_flipbook.hframes = 4
+		background_flipbook.vframes = 6
+		background_flipbook.frame = 0
+		background_flipbook.position = WORLD_SIZE * 0.5
+		background_flipbook.centered = true
+		background_flipbook.scale = Vector2(
+			WORLD_SIZE.x / (float(sheet.get_width()) / 4.0),
+			WORLD_SIZE.y / (float(sheet.get_height()) / 6.0)
+		)
+		background_flipbook.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+		background_flipbook.z_index = -90
+		add_child(background_flipbook)
+		return
+
 	var stream := load("res://assets/backgrounds/swamp_pixel_art_pingpong.ogv")
 	if stream == null:
 		stream = load("res://assets/backgrounds/swamp_pixel_art_12fps.ogv")
@@ -78,6 +100,14 @@ func _add_animated_background() -> void:
 
 func _process(delta: float) -> void:
 	elapsed += delta
+	if background_flipbook != null:
+		var ping_pong_length := (BACKGROUND_FRAME_COUNT - 1) * 2
+		var frame_position := int(elapsed * BACKGROUND_FRAME_RATE) % ping_pong_length
+		background_flipbook.frame = (
+			frame_position
+			if frame_position < BACKGROUND_FRAME_COUNT
+			else ping_pong_length - frame_position
+		)
 	queue_redraw()
 
 func _build_walkable_regions() -> void:
@@ -304,7 +334,7 @@ func _draw_animated_details() -> void:
 		draw_circle(p, 2.5, Color(1.0, 0.88, 0.46, pulse))
 	# The supplied animated backdrop already contains moving lantern light.
 	# Keep the procedural lantern pass only for the static fallback background.
-	if background_video != null:
+	if background_video != null or background_flipbook != null:
 		return
 	for i in range(5):
 		var p: Vector2 = [Vector2(892, 780), Vector2(1250, 800), Vector2(1585, 790), Vector2(640, 450), Vector2(460, 1150)][i]
