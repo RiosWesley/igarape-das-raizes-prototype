@@ -44,19 +44,42 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	var input_dir := _read_movement_input()
+	var animation_input := input_dir
 	if dialogue_locked:
 		input_dir = Vector2.ZERO
+		animation_input = Vector2.ZERO
 		velocity = Vector2.ZERO
 	else:
-		velocity = input_dir * SPEED
+		var movement_world := get_parent().get_node_or_null("IgarapeDasRaizes")
+		var frame_motion := input_dir * SPEED * delta
+		var allowed_input := input_dir
+		if movement_world != null and movement_world.has_method("can_player_stand_at"):
+			if not bool(movement_world.call("can_player_stand_at", global_position + frame_motion)):
+				allowed_input = Vector2.ZERO
+				var can_move_x: bool = abs(input_dir.x) > 0.0 and bool(movement_world.call("can_player_stand_at", global_position + Vector2(frame_motion.x, 0.0)))
+				var can_move_y: bool = abs(input_dir.y) > 0.0 and bool(movement_world.call("can_player_stand_at", global_position + Vector2(0.0, frame_motion.y)))
+				if can_move_x and can_move_y:
+					if abs(input_dir.x) >= abs(input_dir.y):
+						allowed_input.x = input_dir.x
+					else:
+						allowed_input.y = input_dir.y
+				elif can_move_x:
+					allowed_input.x = input_dir.x
+				elif can_move_y:
+					allowed_input.y = input_dir.y
+		animation_input = allowed_input
+		velocity = allowed_input * SPEED
+		var previous_position := global_position
 		move_and_slide()
-		global_position.x = clamp(global_position.x, 50.0, 2350.0)
-		global_position.y = clamp(global_position.y, 90.0, 1430.0)
-		if input_dir.length_squared() > 0.01:
+		if movement_world != null and movement_world.has_method("can_player_stand_at") and not bool(movement_world.call("can_player_stand_at", global_position)):
+			global_position = previous_position
+			velocity = Vector2.ZERO
+			animation_input = Vector2.ZERO
+		if animation_input.length_squared() > 0.01:
 			animation_clock += delta
 		else:
 			animation_clock += delta * 0.80
-	_update_animation(input_dir)
+	_update_animation(animation_input)
 	z_index = 100 + int(global_position.y)
 
 func _read_movement_input() -> Vector2:

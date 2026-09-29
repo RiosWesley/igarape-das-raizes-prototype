@@ -44,7 +44,6 @@ func _draw() -> void:
 	_draw_objective_panel()
 	if not hud.game.dialogue_active:
 		_draw_quick_items(screen)
-		_draw_minimap(screen)
 		# The command panel belongs to a future combat state. It must not be
 		# permanently visible during this exploration/dialogue prototype.
 		if hud.game.action_menu_open:
@@ -187,53 +186,6 @@ func _draw_action_icon(center: Vector2, index: int, color: Color) -> void:
 			center + Vector2(0, -9), center + Vector2(8, -5), center + Vector2(6, 7), center + Vector2(0, 10),
 			center + Vector2(-6, 7), center + Vector2(-8, -5)
 		]), color)
-
-func _draw_minimap(screen: Vector2) -> void:
-	var center := Vector2(screen.x - 112.0, screen.y - 140.0)
-	draw_circle(center, 88.0, Color(0.012, 0.025, 0.027, 0.97))
-	draw_arc(center, 86.0, 0.0, TAU, 64, GOLD, 3.0)
-	draw_arc(center, 78.0, 0.0, TAU, 64, Color("#77542a"), 1.0)
-	draw_circle(center, 73.0, Color("#123d3d"))
-	# Miniature water, paths and huts echoing the circular map in the reference.
-	draw_colored_polygon(PackedVector2Array([
-		center + Vector2(-26, -72), center + Vector2(16, -59), center + Vector2(35, -35),
-		center + Vector2(21, -3), center + Vector2(-2, 17), center + Vector2(-19, 69),
-		center + Vector2(-58, 45), center + Vector2(-51, 7), center + Vector2(-62, -30)
-	]), Color("#0d4a63"))
-	draw_polyline(PackedVector2Array([
-		center + Vector2(-60, 44), center + Vector2(-43, 27), center + Vector2(-27, 20),
-		center + Vector2(-15, 4), center + Vector2(7, -8), center + Vector2(26, -28),
-		center + Vector2(55, -42)
-	]), Color("#9c713a"), 7.0)
-	draw_polyline(PackedVector2Array([
-		center + Vector2(-60, 44), center + Vector2(-43, 27), center + Vector2(-27, 20),
-		center + Vector2(-15, 4), center + Vector2(7, -8), center + Vector2(26, -28),
-		center + Vector2(55, -42)
-	]), Color("#e1b05d"), 2.0)
-	var huts := [Vector2(-45, -35), Vector2(-18, 38), Vector2(34, 27), Vector2(43, -6)]
-	for hut in huts:
-		draw_rect(Rect2(center + hut - Vector2(6, 4), Vector2(12, 9)), Color("#a96d3b"), true)
-		draw_colored_polygon(PackedVector2Array([
-		center + hut + Vector2(-8, -4), center + hut + Vector2(0, -10),
-		center + hut + Vector2(8, -4)
-		]), Color("#d3a14d"))
-	draw_circle(center + Vector2(-40, 23), 5.0, RED)
-	draw_circle(center + Vector2(28, -9), 5.0, TEAL)
-	draw_circle(center + Vector2(-10, 4), 3.0, GOLD_LIGHT)
-	draw_string(font, center + Vector2(-5, -72), "N", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, GOLD_LIGHT)
-	draw_string(font, center + Vector2(73, 4), "L", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, GOLD_LIGHT)
-	draw_string(font, center + Vector2(-4, 82), "S", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, GOLD_LIGHT)
-	draw_string(font, center + Vector2(-82, 4), "O", HORIZONTAL_ALIGNMENT_LEFT, -1, 11, GOLD_LIGHT)
-	if hud.game.player:
-		var player_position: Vector2 = hud.game.player.global_position
-		var map_position := Vector2((player_position.x / 2400.0 - 0.5) * 112.0, (player_position.y / 1500.0 - 0.5) * 82.0)
-		draw_circle(center + map_position, 10.0, Color(0.94, 0.30, 0.22, 0.18))
-		draw_colored_polygon(PackedVector2Array([
-			center + map_position + Vector2(0, -9), center + map_position + Vector2(8, 7),
-			center + map_position + Vector2(-8, 7)
-		]), PAPER)
-	draw_string(font, center + Vector2(-104, 101), "COMUNIDADE DO IGARAPE", HORIZONTAL_ALIGNMENT_CENTER, 208, 11, PAPER)
-	draw_string(font, center + Vector2(-104, 116), "AMAZONIA PROFUNDA", HORIZONTAL_ALIGNMENT_CENTER, 208, 11, MUTED)
 
 func _draw_controls(screen: Vector2) -> void:
 	draw_string(font, Vector2(24, screen.y - 13), "WASD / SETAS  mover   |   E  conversar   |   ESC  fechar", HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(0.92, 0.88, 0.76, 0.84))

@@ -15,6 +15,7 @@ var elapsed := 0.0
 var font: Font
 var background_sprite: Sprite2D
 var background_video: VideoStreamPlayer
+var walkable_regions: Array[PackedVector2Array] = []
 
 var fireflies := [
 	Vector2(420, 430), Vector2(575, 610), Vector2(1010, 355), Vector2(1210, 510),
@@ -37,6 +38,7 @@ func _ready() -> void:
 	font = ThemeDB.fallback_font
 	_add_generated_background()
 	_add_animated_background()
+	_build_walkable_regions()
 	_build_collisions()
 	queue_redraw()
 
@@ -55,9 +57,9 @@ func _add_generated_background() -> void:
 	add_child(background_sprite)
 
 func _add_animated_background() -> void:
-	var stream := load("res://assets/backgrounds/swamp_pixel_art_12fps.ogv")
+	var stream := load("res://assets/backgrounds/swamp_pixel_art_pingpong.ogv")
 	if stream == null:
-		stream = load("res://assets/backgrounds/swamp_12fps_2560_q9.ogv")
+		stream = load("res://assets/backgrounds/swamp_pixel_art_12fps.ogv")
 	if stream == null:
 		return
 	background_video = VideoStreamPlayer.new()
@@ -78,14 +80,59 @@ func _process(delta: float) -> void:
 	elapsed += delta
 	queue_redraw()
 
+func _build_walkable_regions() -> void:
+	walkable_regions.clear()
+	# Dry western bank. The boundary follows the visible shoreline, leaving
+	# mangrove roots and the river itself outside the playable area.
+	walkable_regions.append(PackedVector2Array([
+		Vector2(0, 0), Vector2(860, 0), Vector2(840, 120), Vector2(780, 250),
+		Vector2(690, 380), Vector2(610, 520), Vector2(530, 650), Vector2(460, 770),
+		Vector2(400, 880), Vector2(340, 960), Vector2(330, 1010), Vector2(365, 1090),
+		Vector2(430, 1180), Vector2(530, 1310), Vector2(630, 1500), Vector2(0, 1500)
+	]))
+	# The wooden bridge is a narrow, connected route. Each segment becomes a
+	# corridor so the player cannot cut across its fences into the water.
+	var bridge_points := PackedVector2Array([
+		Vector2(230, 1200), Vector2(420, 1080), Vector2(590, 1010),
+		Vector2(780, 965), Vector2(930, 915), Vector2(1080, 858),
+		Vector2(1180, 760), Vector2(1230, 640), Vector2(1320, 520),
+		Vector2(1435, 395), Vector2(1570, 300), Vector2(1740, 240), Vector2(1920, 200)
+	])
+	for index in range(bridge_points.size() - 1):
+		_add_walkable_corridor(bridge_points[index], bridge_points[index + 1], 76.0)
+	# The raised landing around the house is the bridge's eastern endpoint.
+	walkable_regions.append(PackedVector2Array([
+		Vector2(1640, 0), Vector2(2400, 0), Vector2(2400, 440), Vector2(2200, 460),
+		Vector2(2050, 380), Vector2(1900, 330), Vector2(1780, 270), Vector2(1680, 220)
+	]))
+
+func _add_walkable_corridor(start: Vector2, finish: Vector2, half_width: float) -> void:
+	var direction := (finish - start).normalized()
+	var normal := Vector2(-direction.y, direction.x) * half_width
+	walkable_regions.append(PackedVector2Array([
+		start + normal, finish + normal, finish - normal, start - normal
+	]))
+
+func can_player_stand_at(candidate_position: Vector2) -> bool:
+	# Sample the feet and the sides of the collision footprint so a body cannot
+	# hang over a bank or rail while its center remains on the deck.
+	var footprint: Array[Vector2] = [Vector2.ZERO, Vector2(-13, 0), Vector2(13, 0), Vector2(0, -8), Vector2(0, 8)]
+	for offset in footprint:
+		var point: Vector2 = candidate_position + offset
+		var inside_walkable := false
+		for region in walkable_regions:
+			if Geometry2D.is_point_in_polygon(point, region):
+				inside_walkable = true
+				break
+		if not inside_walkable:
+			return false
+	return true
+
 func _build_collisions() -> void:
 	_add_solid(Rect2(-80, -80, WORLD_SIZE.x + 160, 80), "border_top")
 	_add_solid(Rect2(-80, WORLD_SIZE.y, WORLD_SIZE.x + 160, 80), "border_bottom")
 	_add_solid(Rect2(-80, -80, 80, WORLD_SIZE.y + 160), "border_left")
 	_add_solid(Rect2(WORLD_SIZE.x, -80, 80, WORLD_SIZE.y + 160), "border_right")
-	# A shallow lagoon occupies the right side; the boardwalk stays open below it.
-	_add_solid(Rect2(1260, 120, 1100, 500), "lagoon_north")
-	_add_solid(Rect2(2040, 600, 320, 480), "lagoon_east")
 	# Large roots and trunks that shape the walking route.
 	_add_solid(Rect2(102, 214, 115, 155), "tree_root_1")
 	_add_solid(Rect2(682, 172, 120, 150), "tree_root_2")
@@ -93,8 +140,6 @@ func _build_collisions() -> void:
 	_add_solid(Rect2(320, 615, 115, 96), "rock_cluster_1")
 	_add_solid(Rect2(720, 1120, 140, 80), "rock_cluster_2")
 	_add_solid(Rect2(1520, 930, 105, 80), "rock_cluster_3")
-	# Teodoro has a small physical footprint so the player cannot overlap him.
-	_add_solid(Rect2(1060, 820, 70, 55), "npc_anchor")
 
 func _add_solid(rect: Rect2, body_name: String) -> void:
 	var body := StaticBody2D.new()
