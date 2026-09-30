@@ -5,7 +5,7 @@ class_name RiverWorld
 const WORLD_SIZE := Vector2(2400.0, 1500.0)
 const BACKGROUND_FRAME_COUNT := 24
 const BACKGROUND_FRAME_RATE := 12.0
-const BACKGROUND: Texture2D = preload("res://assets/backgrounds/river_stage.webp")
+const BACKGROUND: Texture2D = preload("res://assets/backgrounds/river_stage.png")
 const WATER := Color("#0b3c59")
 const WATER_DEEP := Color("#082d47")
 const GRASS := Color("#173b2c")
@@ -60,10 +60,10 @@ func _add_generated_background() -> void:
 	add_child(background_sprite)
 
 func _add_animated_background() -> void:
-	var sheet := load("res://art/swamp_pixel_frames_native_2s_atlas.webp") as Texture2D
+	var sheet := load("res://art/swamp_pixel_water_overlay_v4.webp") as Texture2D
 	if sheet != null:
 		background_flipbook = Sprite2D.new()
-		background_flipbook.name = "LosslessSwampFlipbook"
+		background_flipbook.name = "AnimatedWaterOverlay"
 		background_flipbook.texture = sheet
 		background_flipbook.hframes = 4
 		background_flipbook.vframes = 6
